@@ -1,0 +1,49 @@
+<mat-sidenav-container class="container">
+  <!-- Sidebar -->
+  <mat-sidenav
+    #sidenav
+    mode="side"
+    [opened]="sideNavAberto"
+    class="sidenav"
+    color="primary"
+  >
+    <mat-toolbar color="primary" class="sidenav-header">
+      <span>Menu</span>
+    </mat-toolbar>
+    <mat-nav-list>
+      <a
+        routerLink="/livros"
+        routerLinkActive="active-link"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <mat-icon>book</mat-icon>
+        <span>Livros</span>
+      </a>
+      <a
+        routerLink="/autores"
+        routerLinkActive="active-link"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <mat-icon>person</mat-icon>
+        <span>Autores</span>
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <!-- Content -->
+  <mat-sidenav-content>
+    <mat-toolbar color="primary" class="top-toolbar">
+      <button
+        mat-icon-button
+        (click)="toggleSidenav()"
+        aria-label="Toggle sidenav"
+      >
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span class="app-title">Livraria</span>
+    </mat-toolbar>
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

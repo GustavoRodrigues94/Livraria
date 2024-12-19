@@ -1,0 +1,62 @@
+.container {
+  height: calc(-128px + 100vh);
+  padding: 16px;
+
+  .header {
+    margin-bottom: 16px;
+
+    .header-title {
+      font-size: 24px;
+      font-weight: 500;
+    }
+
+    .spacer {
+      flex: 1 1 auto;
+    }
+
+    button {
+      margin-right: 5px;
+    }
+
+    .toolbar-actions {
+      background-color: white;
+    }
+  }
+
+  .title-valor-compras {
+    margin-top: 10px;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 16px;
+  }
+
+  .book-card {
+    max-width: 100%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+    mat-card-title {
+      font-size: medium;
+    }
+
+    mat-card-header {
+      margin-bottom: 8px;
+    }
+
+    mat-chip-set {
+      margin-top: 8px;
+    }
+
+    .title-content {
+      font-weight: 500;
+    }
+
+    mat-card-actions {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px;
+    }
+  }
+}

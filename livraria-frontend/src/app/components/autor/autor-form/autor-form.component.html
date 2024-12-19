@@ -1,0 +1,27 @@
+<div class="container">
+  <mat-card class="form-card">
+    <mat-card-title>{{ editando ? 'Editar Autor' : 'Adicionar Autor' }}</mat-card-title>
+
+    <form [formGroup]="autorForm" (ngSubmit)="adicionarAlterarAutor()">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Nome</mat-label>
+        <input matInput formControlName="nome" placeholder="Digite o nome do autor" />
+        <mat-error *ngIf="autorForm.get('nome')?.hasError('required')">
+          O nome é obrigatório.
+        </mat-error>
+        <mat-error *ngIf="autorForm.get('nome')?.hasError('minlength')">
+          O nome deve ter pelo menos 3 caracteres.
+        </mat-error>
+      </mat-form-field>
+
+      <div class="actions">
+        <button mat-raised-button color="warn" type="button" (click)="cancelar()">
+          Cancelar
+        </button>
+        <button mat-raised-button color="primary" type="submit" [disabled]="autorForm.invalid">
+          {{ editando ? 'Atualizar' : 'Salvar' }}
+        </button>
+      </div>
+    </form>
+  </mat-card>
+</div>

@@ -1,0 +1,87 @@
+<div class="container">
+  <mat-card class="form-card">
+    <mat-card-title>{{ editando ? 'Editar Livro' : 'Adicionar Livro' }}</mat-card-title>
+
+    <form [formGroup]="livroForm" (ngSubmit)="adicionarAlterarLivro()">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Título</mat-label>
+        <input matInput formControlName="titulo" placeholder="Digite o título do livro" />
+      </mat-form-field>
+
+      <!-- MultiSelect para autores -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Autores</mat-label>
+        <mat-select formControlName="autores" multiple>
+          <mat-option *ngFor="let autor of autores" [value]="autor.autorId">{{ autor.nome }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Editora</mat-label>
+        <input matInput formControlName="editora" placeholder="Digite a editora" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Edição</mat-label>
+        <input matInput formControlName="edicao" type="number" placeholder="Digite a edição do livro" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Ano de Publicação</mat-label>
+        <input matInput formControlName="anoPublicacao" placeholder="Ex: 1999" mask="0000" />
+      </mat-form-field>
+
+      <!-- Tags (Assuntos) -->
+      <div class="tags-container">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Assuntos</mat-label>
+          <!-- MatChipGrid que agrupa os chips -->
+          <mat-chip-grid #chipGrid aria-label="Assuntos">
+            <input matInput [matChipInputFor]="chipGrid" [matChipInputSeparatorKeyCodes]="separatorKeys"
+              (matChipInputTokenEnd)="adicionarAssunto($event)" placeholder="Digite e pressione Enter" />
+            <!-- Lista de Chips -->
+            <mat-chip-row *ngFor="let assunto of assuntosSelecionados" (removed)="removerAssunto(assunto)">
+              {{ assunto }}
+              <button mat-icon-button matChipRemove>
+                <mat-icon>cancel</mat-icon>
+              </button>
+            </mat-chip-row>
+          </mat-chip-grid>
+        </mat-form-field>
+      </div>
+
+      <!-- Campos para Valores de Compra -->
+      <div formArrayName="valoresCompra" class="values-container">
+        <div *ngFor="let valueGroup of valoresCompra.controls; let i = index" [formGroupName]="i" class="value-row">
+          <mat-form-field appearance="outline" class="type-field">
+            <mat-label>Tipo de Compra</mat-label>
+            <mat-select formControlName="tipo">
+              <mat-option *ngFor="let tipo of tiposDeCompra" [value]="tipo" [disabled]="tipoJaSelecionado(tipo)">
+                {{ tipo }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="value-field">
+            <mat-label>Valor (R$)</mat-label>
+            <input matInput formControlName="valor" type="text" placeholder="Ex: R$ 49,99" mask="separator.2"
+              thousandSeparator="." decimalMarker="," prefix="R$ " />
+          </mat-form-field>
+          <button mat-icon-button color="warn" (click)="removerValorCompra(i)">
+            <mat-icon>remove_circle</mat-icon>
+          </button>
+        </div>
+        <button mat-button color="primary" (click)="adicionarValorCompra()">
+          <mat-icon>add</mat-icon> Adicionar Tipo de Compra
+        </button>
+      </div>
+
+      <!-- Botões de ação -->
+      <div class="actions">
+        <button mat-raised-button color="warn" type="button" (click)="cancelar()">Cancelar</button>
+        <button mat-raised-button color="primary" type="submit" [disabled]="livroForm.invalid">
+          {{ editando ? 'Atualizar' : 'Salvar' }}
+        </button>
+      </div>
+    </form>
+  </mat-card>
+</div>

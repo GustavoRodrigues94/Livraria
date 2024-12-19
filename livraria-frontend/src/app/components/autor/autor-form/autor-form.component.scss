@@ -1,0 +1,26 @@
+.container {
+  height: calc(-128px + 100vh);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .form-card {
+    width: 400px;
+    padding: 16px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+
+    mat-card-title {
+      margin-bottom: 1em;
+    }
+  }
+
+  .full-width {
+    width: 100%;
+    margin-bottom: 16px;
+  }
+
+  .actions {
+    display: flex;
+    justify-content: space-between;
+  }
+}

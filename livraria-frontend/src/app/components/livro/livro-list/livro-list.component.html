@@ -1,0 +1,63 @@
+<div class="container">
+  <!-- Header -->
+  <div class="header">
+    <mat-toolbar class="toolbar-actions">
+      <span class="header-title">Lista de Livros</span>
+      <span class="spacer"></span>
+      <button mat-raised-button color="accent" (click)="adicionarLivro()">
+        <mat-icon>add</mat-icon> Adicionar Livro
+      </button>
+      <button mat-raised-button color="accent" (click)="gerarRelatorio()">
+        <mat-icon>description</mat-icon> Gerar Relatório
+      </button>
+    </mat-toolbar>
+  </div>
+
+  <!-- Grid de Livros -->
+  <div class="grid">
+    <mat-card class="book-card" *ngFor="let livro of livros">
+      <mat-card-header>
+        <mat-card-title>{{ livro.titulo }}</mat-card-title>
+        <mat-card-subtitle>
+          <!-- Exibindo os autores -->
+          <ng-container *ngFor="let autor of livro.autores; let i = index">
+            {{ autor.nome }}<span *ngIf="i < livro.autores.length - 1">, </span>
+          </ng-container>
+        </mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <p>
+          <span class="title-content">Editora:</span> {{ livro.editora }}
+        </p>
+        <p>
+          <span class="title-content">Ano:</span> {{ livro.anoPublicacao }}
+        </p>
+        <!-- Exibindo os assuntos -->
+        <mat-chip-set aria-label="Lista de Assuntos">
+          <mat-chip *ngFor="let assunto of livro.assuntos" color="primary" selected>
+            {{ assunto.descricao }}
+          </mat-chip>
+        </mat-chip-set>
+        <!-- Exibindo os valores de compra -->
+        <p class="title-valor-compras">
+          <span class="title-content">Valores de Compra:</span>
+        </p>
+        <ul>
+          <li *ngFor="let valor of livro.valoresCompra">
+            {{ valor.tipo }}: R$ {{ valor.valor | number:'1.2-2' }}
+          </li>
+        </ul>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button color="primary" (click)="editarLivro(livro.livroId)">
+          <mat-icon>edit</mat-icon>
+          Editar
+        </button>
+        <button mat-button color="warn" (click)="removerLivro(livro.livroId)">
+          <mat-icon>remove</mat-icon>
+          Remover
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

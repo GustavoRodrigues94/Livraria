@@ -1,0 +1,37 @@
+<div class="container">
+  <!-- Header -->
+  <div class="header">
+    <mat-toolbar class="toolbar-actions">
+      <span class="header-title">Lista de Autores</span>
+      <span class="spacer"></span>
+      <button mat-raised-button color="accent" (click)="adicionarAutor()">
+        <mat-icon>add</mat-icon> Adicionar Autor
+      </button>
+    </mat-toolbar>
+  </div>
+
+  <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <!-- Coluna Nome -->
+    <ng-container matColumnDef="nome">
+      <mat-header-cell *matHeaderCellDef> Nome </mat-header-cell>
+      <mat-cell *matCellDef="let autor"> {{ autor.nome }} </mat-cell>
+    </ng-container>
+
+    <!-- Coluna Ações -->
+    <ng-container matColumnDef="acoes">
+      <mat-header-cell *matHeaderCellDef class="action-cell"> Ações </mat-header-cell>
+      <mat-cell *matCellDef="let autor" class="action-cell">
+        <button mat-icon-button color="primary" (click)="editarAutor(autor)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" (click)="removerAutor(autor)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <!-- Header e Rows -->
+    <mat-header-row *matHeaderRowDef="datatableColunas"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: datatableColunas"></mat-row>
+  </mat-table>
+</div>

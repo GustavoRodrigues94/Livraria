@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Relatório de Livros</title>
+    <style>
+        body { font-family: Arial, sans-serif; font-size: 12px; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { border: 1px solid #ccc; padding: 8px; }
+        th { background-color: #f2f2f2; }
+    </style>
+</head>
+<body>
+<h1>Relatório de Livros Agrupados por Autor</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Autor</th>
+        <th>Livro</th>
+        <th>Editora</th>
+        <th>Ano Publicação</th>
+        <th>Assuntos</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Autor</td>
+            <td>@item.Livro</td>
+            <td>@item.Editora</td>
+            <td>@item.AnoPublicacao</td>
+            <td>@item.Assuntos</td>
+        </tr>
+    }
+    </tbody>
+</table>
+</body>
+</html>

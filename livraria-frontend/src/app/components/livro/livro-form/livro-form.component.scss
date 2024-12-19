@@ -1,0 +1,46 @@
+.container {
+  height: auto;
+  display: flex;
+  justify-content: center;
+
+  .form-card {
+    width: 60vw;
+    padding: 16px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+
+    mat-card-title {
+      margin-bottom: 1em;
+    }
+  }
+
+  .full-width {
+    width: 100%;
+    margin-bottom: 16px;
+  }
+
+  .tags-container {
+    margin-top: 8px;
+  }
+
+  .actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 16px;
+  }
+
+  .values-container {
+    margin: 16px 0;
+
+    .value-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+
+      .type-field,
+      .value-field {
+        flex: 1;
+      }
+    }
+  }
+
+}
